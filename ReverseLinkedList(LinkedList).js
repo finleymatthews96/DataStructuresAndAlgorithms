@@ -11,7 +11,6 @@ Output: [5,4,3,2,1]
  *     this.val = (val===undefined ? 0 : val)
  *     this.next = (next===undefined ? null : next)
  * }
- */
 /**
  * @param {ListNode} head
  * @return {ListNode}
