@@ -49,4 +49,4 @@ function depthFirstSearch(edges, start, visited, inStack){
 	
 	inStack[start] = 0
 	return false;
-}
+} 
