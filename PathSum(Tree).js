@@ -22,7 +22,7 @@ Output: true
  * @return {boolean}
  */
 
-// O(n) T || O(h) S where n is the number of nodes, and h is the depth of the tree
+// O(n) T || O(h) S, where n is the number of nodes, and h is the depth of the tree
 var hasPathSum = function(root, targetSum) {
     
     if (!root) return false;
