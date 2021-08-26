@@ -23,7 +23,7 @@ Output: []
 */
 
 // sorting solution
-// O(n^2) T | O(1) S (besides answer)
+// O(n^2) T | O(log n) S (besides answer), depending on sorting algorithm's space
 var threeSum = function(nums) {
   let result = [];
   nums.sort((a, b) => a - b)
