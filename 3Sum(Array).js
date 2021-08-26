@@ -50,3 +50,30 @@ var threeSum = function(nums) {
   
   return result;
 };
+
+// hash set with sorted array
+// O(n^2) T | O(n) S
+var threeSum = function(nums) {
+  let map = {}
+  let diff = 0;
+  let result = [];
+  
+  nums.sort((a,b) => a-b);
+  
+  for (let i=0; i < nums.length; i++) {
+    map[nums[i]] = i;
+  } 
+   
+  for (let i = 0; i < nums.length; i++) {
+    if (i != 0 && nums[i] == nums[i-1]) continue;
+    for (let j = i+1; j < nums.length; j++) {
+      if (j != i + 1 && nums[j] == nums[j - 1]) continue;
+      diff = 0 - (nums[i] + nums[j]);
+      if (map[diff] && map[diff] > j) {
+        result.push([nums[i], nums[j], diff]);
+      }
+    }
+  }
+  
+  return result;
+};
