@@ -52,3 +52,15 @@ var canJump = function(nums){
   if (nums[0] === true) return true;
   return false;
 }
+
+// Greedy
+// O(n) T | O(1) S
+var canJump = function(nums){
+  let leftMost = nums.length - 1;
+  
+  for (let i = nums.length - 1; i >= 0; i--){
+    if (i + nums[i] >= leftMost) leftMost = i
+  }
+  
+  return leftMost === 0
+}
