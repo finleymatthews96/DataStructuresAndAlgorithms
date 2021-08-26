@@ -34,3 +34,21 @@ var canJump = function(nums, i = 0, memo = {}) {
   
   return false;
 };
+
+// Dynamic Programming Bottom Up
+// O(n^2) T | O(1) S
+var canJump = function(nums){
+  nums[nums.length - 1] = true;
+  
+  for (let i = nums.length - 1; i >= 0; i--){
+    for (let j = i + 1; j <= i + nums[i]; j++){
+      if (nums[j] === true){
+        nums[i] = true;
+        break;
+      }
+    }
+  }
+  
+  if (nums[0] === true) return true;
+  return false;
+}
