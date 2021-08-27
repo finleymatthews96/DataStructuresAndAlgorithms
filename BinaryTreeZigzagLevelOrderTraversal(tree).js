@@ -42,3 +42,13 @@ var zigzagLevelOrder = function(root) {
   
   return result;
 };
+
+// DFS
+// O(n) T || O(h) S where n is # nodes, h is height
+var zigzagLevelOrder = function(root, res = [], level = 0) {
+    if (!root) return [];
+    res[level] = level % 2 ? [root.val, ...res[level] || []] : [...res[level] || [], root.val];
+    zigzagLevelOrder(root.left, res, level + 1);
+    zigzagLevelOrder(root.right, res, level + 1);
+    return res;
+};
