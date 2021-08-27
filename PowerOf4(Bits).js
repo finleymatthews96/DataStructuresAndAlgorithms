@@ -47,3 +47,11 @@ var isPowerOfFour = function(n) {
   return true;
 };
 
+// find power of two with bit manipulation, do math to see if also power of 4
+// O(1) T | O(1) S
+var isPowerOfFour = function(n) {
+  if (n < 0) return false;
+  if (n & (n-1)) return false;
+  if (n % 3 != 1) return false
+  return true;
+};
