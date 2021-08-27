@@ -37,3 +37,13 @@ var isPowerOfFour = function(n) {
   
   return n === 1
 };
+
+// bit manipulation
+// O(1) T | O(1) S
+var isPowerOfFour = function(n) {
+  if (n < 1) return false;
+  if (n & (n-1)) return false;
+  if (n & 0b0101010101010101010101010101010) return false;
+  return true;
+};
+
