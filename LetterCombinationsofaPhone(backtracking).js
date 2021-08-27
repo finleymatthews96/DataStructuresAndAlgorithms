@@ -20,8 +20,8 @@ Output: ["a","b","c"]
 */
 
 // recursive backtracking
-// 
-var letterCombinations = function(digits, i = 0, memo = {}) {
+// O(4^n * n) T, O(n) S, where N is the length of digits, and 4 corresponds with the longest length within the hashmap
+var letterCombinations = function(digits, i = 0) {
   if (i === digits.length) return []
   
   let result = [];
@@ -36,12 +36,8 @@ var letterCombinations = function(digits, i = 0, memo = {}) {
     '9': 'wxyz'
   }
   
-  if (memo[i + 1] === undefined){
-    memo[i + 1] = letterCombinations(digits, i + 1, memo);
-  }
-  
   for (let j=0; j < map[digits[i]].length; j++){
-    let newResult = memo[i+1];
+    let newResult = letterCombinations(digits, i + 1);
     newResult = newResult.map((combo) => map[digits[i]][j] + combo);
     newResult.forEach((combo) => result.push(combo));
     if (newResult.length === 0) result.push(map[digits[i]][j])
