@@ -27,3 +27,13 @@ var isPowerOfFour = function(n) {
   
   return isPowerOfFour(n / 4)
 };
+
+// iterative
+// O(n) T | O(1) S
+var isPowerOfFour = function(n) {
+  while (n > 1){
+    n /= 4;
+  }
+  
+  return n === 1
+};
