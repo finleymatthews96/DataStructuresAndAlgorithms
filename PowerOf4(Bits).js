@@ -20,7 +20,7 @@ Output: true
 */
 
 // recursive
-// O(n) T | O(n) S
+// O(log n) T | O(log n) S
 var isPowerOfFour = function(n) {
   if (n === 1) return true;
   if (n < 1) return false;
@@ -29,7 +29,7 @@ var isPowerOfFour = function(n) {
 };
 
 // iterative
-// O(n) T | O(1) S
+// O(log n) T | O(1) S
 var isPowerOfFour = function(n) {
   while (n > 1){
     n /= 4;
