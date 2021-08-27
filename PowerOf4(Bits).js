@@ -55,3 +55,10 @@ var isPowerOfFour = function(n) {
   if (n % 3 != 1) return false
   return true;
 };
+
+// pure math
+// O(1) T || O(1) S
+var isPowerOfFour = function(n) {
+  if (n < 1) return false;
+  return Math.log2(n) % 2 == 0
+};
