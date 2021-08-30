@@ -22,12 +22,11 @@ Output: 3
 var findCircleNum = function(isConnected) {
   const isAccountedFor = Array(isConnected.length).fill(0);
   let count = 0;
-  let stack = [];
   
   for (let i=0; i<isConnected.length; i++){
     if (isAccountedFor[i] === 0){
       count++;
-      stack = [i]
+      let stack = [i]
       while (stack.length > 0){
         let currentCity = stack.pop();
         let adjacencies = isConnected[currentCity]
