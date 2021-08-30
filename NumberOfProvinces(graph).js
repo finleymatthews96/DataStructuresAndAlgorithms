@@ -17,7 +17,7 @@ Input: isConnected = [[1,0,0],[0,1,0],[0,0,1]]
 Output: 3
 */
 
-// iterate over matrix with added while loop
+// DFS -> iterate over matrix with added while loop
 // O(n^2) T | O(n) S
 var findCircleNum = function(isConnected) {
   const isAccountedFor = Array(isConnected.length).fill(0);
