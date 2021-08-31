@@ -12,6 +12,7 @@ Example:
 input:  arr = [4, 6, 10, 15, 16],  lim = 21
 */
 
+// O(n) T | O(n) S
 function getIndicesOfItemWeights(arr, limit) {
   let memo = {}
   
