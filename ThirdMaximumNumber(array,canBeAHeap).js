@@ -55,3 +55,36 @@ var thirdMax = function(nums) {
   if (thirdGreatest !== undefined) return thirdGreatest;
   return greatest;
 };
+
+// O(n) T | O(n) S - min heap
+var thirdMax = function(array) {
+  const memo = {}
+  const minHeap = new Array(3).fill(-Infinity)
+
+  for(let i = 0; i < array.length; i++){
+    if(!memo[array[i]]){
+      memo[array[i]] = true;
+      if (array[i] > minHeap[0]){
+        insertAndSift(minHeap, array[i])
+      }
+    }
+  }
+  
+  if (minHeap[0] === -Infinity) return Math.max(minHeap[1], minHeap[2])
+  return minHeap[0]
+};
+
+function insertAndSift(heap,value){
+  heap[0] = value
+  if(heap[1] < heap[2] && heap[1] < heap[0]){
+    swap(heap, 0, 1)
+  } else if (heap[2] < heap[0]) {
+    swap(heap, 0, 2)
+  }
+}
+
+function swap(heap, i, j){
+  let temp = heap[i];
+  heap[i] = heap[j]
+  heap[j] = temp
+}
