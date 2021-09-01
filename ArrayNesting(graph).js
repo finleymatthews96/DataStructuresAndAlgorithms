@@ -64,3 +64,24 @@ var arrayNesting = function(nums) {
   
   return longest;
 };
+
+// O(n) T | O(1) S, mutate input array to show what we've already seen
+var arrayNesting = function(nums) {
+  let longest = 0;
+  
+  for (let i=0; i<nums.length; i++){
+    if (nums[i] <= nums.length){
+      let current = nums[i];
+      let count = 0;
+      while (nums[current] <= nums.length){
+        const temp = current;
+        current = nums[current];
+        count++;
+        nums[temp] = Infinity;
+      }
+      if (count > longest) longest = count;
+    }
+  }
+  
+  return longest;
+};
