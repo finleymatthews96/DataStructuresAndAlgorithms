@@ -50,3 +50,21 @@ var connect = function(root) {
   previousRow[previousRow.length - 1].next = null;
   return root;
 };
+
+// O(n) T | O(1) S (use the previous row's next pointer instead of a data structure to keep track)
+var connect = function(root) {
+  if (!root) return root;
+  let leftmost = root;
+  
+  while (leftmost.left){
+    let current = leftmost;
+    while (current){
+      current.left.next = current.right
+      if (current.next) current.right.next = current.next.left
+      current = current.next;
+    }
+    leftmost = leftmost.left
+  }
+  
+  return root;
+};
