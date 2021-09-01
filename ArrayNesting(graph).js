@@ -42,3 +42,25 @@ var DFS = function(nums, start, current){
   
   return DFS(nums, start, nums[current]) + 1
 }
+
+// O(n) T | O(n) S - make use of the fact that each index will be part of only one cycle, needs only be calculated once
+var arrayNesting = function(nums) {
+  let seen = Array(nums.length).fill(0);
+  let longest = 0;
+  
+  for (let i=0; i<nums.length; i++){
+    if (!seen[i]){
+      seen[i] = 1;
+      let current = nums[i];
+      let count = 1;
+      while (nums[current] !== nums[i]){
+        seen[current] = 1
+        current = nums[current];
+        count++;
+      }
+      if (count > longest) longest = count;
+    }
+  }
+  
+  return longest;
+};
