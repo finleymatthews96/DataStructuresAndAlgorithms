@@ -86,3 +86,22 @@ var maxProfit = function(prices){
   
   return maxProfit;
 }
+
+// O(n) T | O(1) S mindblowing code ninja type stuff
+var maxProfit = function(prices){
+  let t1Cost = prices[0];
+  let t1Profit = 0;
+  
+  let currentProfit = -t1Cost;
+  let totalProfit = 0;
+  
+  for (const price of prices){
+    t1Cost = Math.min(t1Cost, price)
+    t1Profit = Math.max(t1Profit, price-t1Cost);
+    
+    currentProfit = Math.max(currentProfit, t1Profit-price);
+    totalProfit = Math.max(totalProfit, currentProfit + price)
+  }
+  
+  return totalProfit;
+}
