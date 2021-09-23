@@ -43,6 +43,22 @@ var lengthOfLongestSubstring = function(s) {
     }
     longest = Math.max(longest, current);
   }
+ 
+ // O(n) T | O(n) S - hash map
+ var lengthOfLongestSubstring = function(s) {
+  let start = 0;
+  let maxLen = 0;
+  let map = new Map();
+
+  for (let i = 0; i < s.length; i++) {
+    if (map.get(s[i]) >= start) start = map.get(s[i]) + 1;
+    map.set(s[i], i);
+    
+    maxLen = Math.max(maxLen, i - start + 1)
+  }
+
+  return maxLen;
+};
   
   return longest;
 };
