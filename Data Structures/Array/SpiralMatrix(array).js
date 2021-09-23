@@ -66,3 +66,41 @@ function process(matrix, result, seen, i, j){
   result.push(matrix[i][j]);
   seen[i][j] = 1;
 }
+
+// O(m*n) T | O(1) S
+var spiralOrder = function(matrix) {
+  let res = [];
+    
+  let rowBegin = 0;
+  let rowEnd = matrix.length - 1;
+  let colBegin = 0;
+  let colEnd = matrix[0].length - 1;
+    
+  while(rowBegin <= rowEnd && colBegin <= colEnd) {
+    for (let i=colBegin;i<=colEnd;i++){
+      res.push(matrix[rowBegin][i])
+    }
+    ++rowBegin;
+        
+    for (let i=rowBegin ;i<=rowEnd;i++) {
+      res.push(matrix[i][colEnd])
+    }
+    --colEnd;
+        
+    if (rowBegin <= rowEnd) {
+      for (let i=colEnd; i>=colBegin;i--) {
+        res.push(matrix[rowEnd][i])
+      }
+    }
+    --rowEnd;
+    
+    if (colBegin <= colEnd){
+      for (let i=rowEnd;i>= rowBegin; i--){
+        res.push(matrix[i][colBegin])
+      }
+    }   
+    ++colBegin;
+  }
+    
+  return res;
+};
