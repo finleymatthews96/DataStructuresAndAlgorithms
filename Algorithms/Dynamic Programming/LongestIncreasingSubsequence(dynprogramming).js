@@ -25,7 +25,6 @@ Output: 1
 
 // O(n^2) T | O(n) S
 var lengthOfLIS = function(nums) {
-  if (nums.length < 2) return nums.length;
   let memo = [-Infinity]
   
   for (let i=0; i<nums.length; i++){
