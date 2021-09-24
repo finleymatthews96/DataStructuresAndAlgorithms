@@ -20,7 +20,7 @@ Input: nums = [1]
 Output: [[1]]
 */
 
-// # of permutations T | # of permutations S
+// # of permutations (n! / (n-k)!), or between O(n!) and O(n * n!) T | n! S
 var permute = function(nums, i = 0) {
   if (i === nums.length) return [[]]
   if (i + 1 === nums.length) return [[nums[i]]]
