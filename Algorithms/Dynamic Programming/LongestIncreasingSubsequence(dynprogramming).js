@@ -23,6 +23,11 @@ Input: nums = [7,7,7,7,7,7,7]
 Output: 1
 */
 
+/*
+Intuitive n^2 solution below. In order to improve time to nlogn, change the inner for loop in the below solution
+to a binary search to identify which element we should modify.
+*/
+
 // O(n^2) T | O(n) S
 var lengthOfLIS = function(nums) {
   let memo = [-Infinity]
@@ -38,3 +43,4 @@ var lengthOfLIS = function(nums) {
   
   return memo.length - 1;
 };
+
