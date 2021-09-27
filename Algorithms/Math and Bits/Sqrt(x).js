@@ -30,3 +30,22 @@ var mySqrt = function(x) {
     i++
   }
 };
+
+// O(log x) T | O(1) S
+var mySqrt = function(x) {
+  let low = 0;
+  let high = x;
+  
+  while (low <= high){
+    const mid = Math.floor((low + high) / 2);
+    
+    if (mid * mid === x){
+      return mid;
+    } else if (mid * mid > x){
+      high = mid;
+    } else if (mid * mid < x){
+      if ((mid + 1) * (mid + 1) > x) return mid;
+      low = mid + 1;
+    }
+  }
+};
