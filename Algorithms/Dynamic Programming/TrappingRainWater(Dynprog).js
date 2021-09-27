@@ -105,3 +105,34 @@ var trap = function(height) {
   
   return ans;
 };
+
+// O(n) T | O(1) S - two pointer solution
+var trap = function(height) {
+  let left = 0;
+  let right = height.length - 1;
+  
+  let leftMax = 0;
+  let rightMax = 0;
+  
+  let ans = 0;
+  
+  while (left < right){
+    if (height[left] < height[right]){
+      if (height[left] >= leftMax){
+        leftMax = height[left];
+      } else {
+        ans += leftMax - height[left];
+      }
+      left++;
+    } else if (height[left] >= height[right]) {
+      if (height[right] >= rightMax){
+        rightMax = height[right];
+      } else {
+        ans += rightMax - height[right];
+      }
+      right--;
+    }
+  }
+  
+  return ans;
+};
