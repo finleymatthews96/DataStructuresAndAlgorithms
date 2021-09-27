@@ -66,3 +66,22 @@ var trap = function(height) {
   
   return ans;
 };
+
+// O(n) T | O(n) S
+var trap = function(height) {
+  let leftMax = Array(height.length + 1).fill(0);
+  let rightMax = Array(height.length + 1).fill(0);
+  const last = rightMax.length - 1;
+  
+  for (let i=1; i<leftMax.length; i++){
+    leftMax[i] = Math.max(leftMax[i-1], height[i-1]);
+    rightMax[last - i] = Math.max(rightMax[last - i + 1], height[last - i]);
+  }
+  
+  let ans = 0;
+  for (let i=1; i<leftMax.length; i++){
+    ans += Math.min(leftMax[i], rightMax[i-1]) - height[i-1];
+  }
+  
+  return ans;
+};
