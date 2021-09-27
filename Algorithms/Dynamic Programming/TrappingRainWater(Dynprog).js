@@ -85,3 +85,23 @@ var trap = function(height) {
   
   return ans;
 };
+
+// O(n) T | O(n) S - using a stack
+var trap = function(height) {
+  let stack = [];
+  let ans = 0;
+  
+  for (let i=0; i<height.length; i++){
+    while (stack.length > 0 && height[i] > height[stack[stack.length - 1]]){
+      const top = stack.pop()
+      if (stack.length === 0) break;
+      const newTop = stack[stack.length - 1]
+      const distance = i - newTop - 1;
+      const boundedHeight = Math.min(height[i], height[newTop]) - height[top];
+      ans += distance * boundedHeight;
+    }
+    stack.push(i);
+  }
+  
+  return ans;
+};
