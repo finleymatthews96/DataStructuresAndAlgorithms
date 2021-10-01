@@ -16,7 +16,7 @@ Output: ["()"]
 
 */
 
-// O(
+// O(4^n / sqrt(n)) T | O(4^n / sqrt(n)) S
 var generateParenthesis = function(n, open = n, close = n) {
   if (close === 0) return [''];
   const result = [];
