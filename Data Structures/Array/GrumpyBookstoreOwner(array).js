@@ -48,3 +48,24 @@ var maxSatisfied = function(customers, grumpy, minutes) {
   
   return maxSum;
 };
+
+// O(n) T | O(1) S
+var maxSatisfied = function(customers, grumpy, minutes) {
+  let sum = 0;
+  let maxAdded = 0;
+  customers.unshift(0);
+  for (let i=1; i<customers.length; i++){
+    if (!grumpy[i-1]) {
+      sum += customers[i];
+      customers[i] = customers[i-1];
+    } else {
+      customers[i] += customers[i-1]
+    }
+    
+    if (i >= minutes){
+      maxAdded = Math.max(maxAdded, customers[i]-customers[i-minutes]);
+    }
+  }
+  
+  return sum + maxAdded;
+};
