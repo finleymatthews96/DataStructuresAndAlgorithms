@@ -47,3 +47,24 @@ var canCross = function(stones, lastJump = 0, i = 0) {
   
   return false;
 };
+
+// O(n^2) T | O(n^2) S - dynamic programming
+function canCross(stones) {
+  let map = new Map();
+  for (const stone of stones){
+    map.set(stone, new Set())
+  }
+  map.get(stones[0]).add(0);
+  
+  for (let i=0; i<stones.length; i++){
+    map.get(stones[i]).forEach(jump => {
+      for (let step = jump - 1; step <= jump + 1; step++){
+        if (step > 0 && map.has(stones[i] + step)){
+          map.get(stones[i] + step).add(step)
+        }
+      }
+    })
+  }
+  
+  return map.get(stones[stones.length - 1]).size
+}
