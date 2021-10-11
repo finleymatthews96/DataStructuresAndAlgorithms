@@ -27,7 +27,7 @@ Explanation: There is no way to jump to the last stone as the gap between the 5t
 
 */
 
-// O(n^3) T | O(n) S - recursive backtracking, time limit exceeded on leetcode
+// O(3^n) T | O(n) S - recursive backtracking, time limit exceeded on leetcode
 var canCross = function(stones, lastJump = 0, i = 0) {
   if (i === stones.length - 1) return true;
   if (i >= stones.length) return false;
