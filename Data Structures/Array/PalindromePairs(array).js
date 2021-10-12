@@ -25,7 +25,7 @@ Output: [[0,1],[1,0]]
 
 */
 
-// O(n^2 * w) T | O(n * w) S where w = word length, BRUTE FORCE
+// O(n^2 * w) T | O(n^2 + w) S where w = word length, BRUTE FORCE
 var palindromePairs = function(words) {
   let result = [];
   
