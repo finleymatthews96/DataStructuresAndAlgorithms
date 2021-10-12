@@ -54,3 +54,77 @@ var isPalindrome = function(word1, word2){
   
   return true;
 }
+
+// O(w^2 * n) T | O((k + n)^2) S - hash map
+var palindromePairs = function(words) {
+  let dict = {};
+  for (const word in words){
+    dict[words[word]] = word;
+  }
+  
+  let result = [];
+  
+  for (let i=0; i<words.length; i++){
+    const word = words[i];
+    const reversedWord = words[i].split('').reverse().join('');
+    
+    // case 1 - words have same length
+    if (dict[reversedWord] !== undefined && dict[reversedWord] != i){
+      result.push([i, dict[reversedWord]])
+    }
+    
+    // case 2 - word 1 is shorter
+    const suffixes = allValidSuffixes(words[i]);
+    for (const suffix of suffixes){
+      const reversedSuffix = suffix.split('').reverse().join('');
+      if (dict[reversedSuffix] !== undefined){
+        result.push([dict[reversedSuffix], i])
+      }
+    }
+    
+    // case 3 - word 2 is shorter
+    const prefixes = allValidPrefixes(words[i]);
+    for (const prefix of prefixes){
+      const reversedPrefix = prefix.split('').reverse().join('');
+      if (dict[reversedPrefix] !== undefined){
+        result.push([i, dict[reversedPrefix]])
+      }
+    }
+  }
+  
+  return result;
+}
+
+var allValidPrefixes = function(word){
+  let prefixes = [];
+  
+  for (let i=0; i<word.length; i++){
+    if (isPalindrome(word, i, word.length - 1)){
+      prefixes.push(word.slice(0, i))
+    }
+  }
+  
+  return prefixes;
+}
+
+var allValidSuffixes = function(word){
+  let suffixes = [];
+  
+  for (let i=0; i<word.length; i++){
+    if (isPalindrome(word, 0, i)){
+      suffixes.push(word.slice(i+1));
+    }
+  }
+  
+  return suffixes;
+}
+
+var isPalindrome = function(word, left, right){
+  while (left < right){
+    if (word[left] !== word[right]) return false;
+    left++;
+    right--;
+  }
+  
+  return true;
+}
