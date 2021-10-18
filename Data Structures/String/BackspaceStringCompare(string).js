@@ -32,7 +32,7 @@ Explanation: s becomes "c" while t becomes "b".
 
 */
 
-// O(n) T | O(n) S
+// O(n) T | O(n) S - using a stack to simulate keystrokes
 var backspaceCompare = function(s, t) {
   const finalS = getResult(s);
   const finalT = getResult(t);
@@ -51,4 +51,28 @@ var getResult = function(string){
   }
   
   return stack.join('');
+}
+
+// O(n) | O(1) S - questionable constant space, but iterate from the end
+var backspaceCompare = function(s, t) {
+  let sWord = buildWord(s)
+  let tWord = buildWord(t)
+  return sWord === tWord
+};
+
+var buildWord = function(s){
+  let count = 0;
+  let sWord = ''
+  for (let i=s.length - 1; i>=0; i--){
+    if (s[i] === '#') {
+      count++;
+    } else {
+      if (count > 0){
+        count--
+      } else {
+        sWord += s[i];
+      }
+    }
+  }
+  return sWord;
 }
