@@ -61,3 +61,38 @@ var mergeKLists = function(lists) {
   
   return result.next;
 };
+
+// O(n log k) T | O(1) S - divide and conquer (merge adjacent LLs until we only have one)
+var mergeKLists = function(lists) {
+  if (lists.length === 0) return null;
+  let interval = 1;
+  while (interval < lists.length){
+    for (let i=0; i < lists.length - interval; i += interval * 2){
+      lists[i] = mergeTwoLists(lists[i], lists[i + interval]);
+    }
+    interval *= 2
+  }
+  return lists[0]
+};
+
+var mergeTwoLists = function(l1, l2) {
+  let head = new ListNode(-1)
+  let pointer = head
+  
+  while (l1 && l2){
+    if (l1.val <= l2.val){
+      pointer.next = l1;
+      pointer = l1;
+      l1 = l1.next;
+    } else {
+      pointer.next = l2;
+      pointer = l2;
+      l2 = l2.next
+    }
+  }
+  
+  if (l2) pointer.next = l2
+  else pointer.next = l1
+  
+  return head.next;
+};
