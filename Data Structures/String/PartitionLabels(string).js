@@ -33,6 +33,36 @@ var partitionLabels = function(s) {
     i = nextPartition;
   }
   
+  // O(n) T | O(n) S - standard memoization use case
+  var partitionLabels = function(s) {
+  let memo = buildMemo(s);
+  let i=0;
+  let result = [];
+  
+  while (i < s.length){
+    let end = memo[s[i]];
+    let start = i;
+    while (i < end){
+      i++;
+      end = Math.max(end, memo[s[i]]);
+    }
+    result.push(end - start + 1);
+    i = end + 1;
+  }
+  
+  return result;
+};
+
+var buildMemo = function(s){
+  let memo = {};
+  
+  for (let i=0; i<s.length; i++){
+    memo[s[i]] = i;
+  }
+  
+  return memo;
+}
+
   function findNextPartition(idx){
     let end = idx + 1;
     let last = idx + 1;
