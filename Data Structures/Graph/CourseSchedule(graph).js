@@ -56,3 +56,37 @@ function canFinish(numCourses, prerequisites) {
     return true;
   }
 }
+
+// O(V + E) T | O(V + E) S - topological sort, lends itself well to Course Schedule II
+var canFinish = function(numCourses, prerequisites) {
+  const order = [];
+  const queue = [];
+  const graph = new Map();
+  const indegree = Array(numCourses).fill(0);
+
+  for (const [e, v] of prerequisites) {
+    if (graph.has(v)) {
+      graph.get(v).push(e);
+    } else {
+      graph.set(v, [e]);
+    }
+    indegree[e]++;
+  }
+
+  for (let i = 0; i < indegree.length; i++) {
+    if (indegree[i] === 0) queue.push(i);
+  }
+
+  while (queue.length) {
+    const v = queue.shift();
+    if (graph.has(v)) {
+      for (const e of graph.get(v)) {
+        indegree[e]--;
+        if (indegree[e] === 0) queue.push(e);
+      }
+    }
+    order.push(v);
+  }
+
+  return numCourses === order.length;
+};
