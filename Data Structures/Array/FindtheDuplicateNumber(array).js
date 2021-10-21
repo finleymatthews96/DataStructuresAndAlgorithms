@@ -39,3 +39,14 @@ var findDuplicate = function(nums) {
     memo[num] = true;
   }
 };
+
+// O(n) T | O(1) S - continually swap 0th element and the element at nums[0] until they equal each other
+var findDuplicate = function(nums) {
+  while (nums[0] !== nums[nums[0]]){
+    let curr = nums[0];
+    nums[0] = nums[curr];
+    nums[curr] = curr;
+  }
+  
+  return nums[0];
+};
