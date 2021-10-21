@@ -34,6 +34,24 @@ var productExceptSelf = function(nums) {
     fromRight[i] = fromRight[i+1] * nums[i+1]
   }
   
+  // O(n) T | O(1) S - new array created for answer, but no other helper data structures needed
+  var productExceptSelf = function(nums) {
+  let result = Array(nums.length).fill(1);
+  
+  for (let i=1; i<nums.length; i++){
+    result[i] = result[i-1] * nums[i-1]
+  }
+  
+  let lastRight = 1;
+  for (let i=nums.length - 2; i >= 0; i--){
+    let newRight = lastRight * nums[i+1]
+    result[i] *= newRight;
+    lastRight = newRight;
+  }
+  
+  return result;
+};
+  
   for (let i=0; i<result.length; i++){
     result[i] = fromLeft[i] * fromRight[i]
   }
