@@ -28,6 +28,8 @@ var minMeetingRooms = function(intervals) {
     while (stack.length > 0 && meeting[0] >= stack[stack.length-1]){
       stack.pop();
     }
+    
+    // would be slightly more efficient to keep a min heap here, as opposed to an array that needs re-sorting
     stack.push(meeting[1]);
     let thisMeeting = stack.length - 1;
     while (stack.length > 1 && stack[thisMeeting] > stack[thisMeeting - 1]){
